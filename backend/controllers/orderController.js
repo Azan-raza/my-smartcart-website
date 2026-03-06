@@ -8,6 +8,11 @@ const getPrimaryImage = (product) =>
   product.image || (Array.isArray(product.images) && product.images.length ? product.images[0] : "/products/default-product.jpg");
 
 export const createCheckoutSession = asyncHandler(async (req, res) => {
+  if (!stripe) {
+    res.status(503);
+    throw new Error("Stripe is not configured. Set STRIPE_SECRET_KEY on the server.");
+  }
+
   const { items, shippingAddress } = req.body;
 
   if (!items || !items.length) {
@@ -129,6 +134,11 @@ export const placeCashOnDeliveryOrder = asyncHandler(async (req, res) => {
 });
 
 export const confirmCheckoutSession = asyncHandler(async (req, res) => {
+  if (!stripe) {
+    res.status(503);
+    throw new Error("Stripe is not configured. Set STRIPE_SECRET_KEY on the server.");
+  }
+
   const { sessionId } = req.query;
 
   if (!sessionId) {
@@ -162,6 +172,12 @@ export const getMyOrders = asyncHandler(async (req, res) => {
 });
 
 export const handleStripeWebhook = async (req, res) => {
+  if (!stripe) {
+    return res.status(503).json({
+      message: "Stripe is not configured. Set STRIPE_SECRET_KEY on the server."
+    });
+  }
+
   const sig = req.headers["stripe-signature"];
 
   let event;

@@ -3,8 +3,6 @@ import Stripe from "stripe";
 
 dotenv.config();
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error("Missing STRIPE_SECRET_KEY in backend/.env");
-}
-
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+export const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
+  : null;
