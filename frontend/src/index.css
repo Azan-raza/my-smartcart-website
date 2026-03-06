@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-ink: #0f172a;
+  --brand-accent: #0f766e;
+  --brand-accent-2: #14b8a6;
+  --bg-soft: #f8fafc;
+  --bg-soft-2: #eef2f7;
+  --text-main: #0f172a;
+}
+
+* {
+  @apply transition-colors duration-300;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(980px 420px at -5% -10%, rgba(20, 184, 166, 0.08), transparent 58%),
+    radial-gradient(900px 360px at 105% -15%, rgba(148, 163, 184, 0.12), transparent 50%),
+    linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-soft-2) 100%);
+}
+
+.dark body {
+  color: #e2e8f0;
+  background:
+    radial-gradient(1050px 420px at 0% -10%, rgba(20, 184, 166, 0.16), transparent 50%),
+    radial-gradient(900px 350px at 100% -20%, rgba(51, 65, 85, 0.26), transparent 45%),
+    linear-gradient(180deg, #020617 0%, #0b1220 100%);
+}
+
+.container-px {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply rounded-xl px-4 py-2 text-white shadow-soft;
+  background: linear-gradient(135deg, var(--brand-accent), var(--brand-accent-2));
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+}
+
+.dark .btn-primary {
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+}
+
+.dark .btn-primary:hover {
+  background: linear-gradient(135deg, #0d9488, #2dd4bf);
+}
+
+.card {
+  @apply rounded-2xl border p-4 shadow-soft dark:border-slate-700;
+  border-color: rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -28px rgba(15, 23, 42, 0.45);
+  border-color: rgba(20, 184, 166, 0.35);
+}
+
+.dark .card {
+  border-color: rgba(71, 85, 105, 0.45);
+  background: rgba(15, 23, 42, 0.78);
+}
+
+.cart-shell {
+  position: relative;
+}
+
+.cart-shell::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  background: linear-gradient(120deg, rgba(20, 184, 166, 0.3), transparent 35%, rgba(51, 65, 85, 0.2));
+  pointer-events: none;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+.cart-header-panel {
+  background: linear-gradient(120deg, rgba(236, 253, 245, 0.96), rgba(241, 245, 249, 0.94));
+}
+
+.dark .cart-header-panel {
+  background: linear-gradient(120deg, rgba(15, 23, 42, 0.9), rgba(15, 118, 110, 0.35));
+}
+
+.mobile-menu-panel {
+  animation: slideInRight 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-menu-link {
+  @apply rounded-lg border px-3 py-2 font-medium;
+  border-color: rgba(148, 163, 184, 0.35);
+  animation: fadeUp 220ms ease both;
+}
+
+.mobile-menu-link:hover {
+  background: rgba(15, 118, 110, 0.08);
+}
+
+.dark .mobile-menu-link {
+  border-color: rgba(71, 85, 105, 0.55);
+}
+
+.dark .mobile-menu-link:hover {
+  background: rgba(15, 118, 110, 0.16);
+}
+
+.page-enter {
+  animation: pageFade 220ms ease;
+}
+
+.page-enter > * {
+  animation: fadeUp 280ms ease both;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ambient-orb {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  filter: blur(34px);
+  opacity: 0.24;
+  animation: drift 16s ease-in-out infinite;
+}
+
+.ambient-orb-a {
+  width: 380px;
+  height: 380px;
+  top: -80px;
+  left: -70px;
+  background: radial-gradient(circle at 30% 30%, rgba(20, 184, 166, 0.45), rgba(20, 184, 166, 0));
+}
+
+.ambient-orb-b {
+  width: 320px;
+  height: 320px;
+  bottom: 8%;
+  right: -80px;
+  background: radial-gradient(circle at 35% 35%, rgba(59, 130, 246, 0.35), rgba(59, 130, 246, 0));
+  animation-delay: 3s;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) translateX(10px) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  .page-enter,
+  .page-enter > *,
+  .mobile-menu-panel,
+  .mobile-menu-link {
+    animation: none !important;
+    transition-duration: 0ms !important;
+  }
+
+  .ambient-orb {
+    animation: none !important;
+  }
+}

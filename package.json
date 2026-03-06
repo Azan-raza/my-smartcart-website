@@ -1,0 +1,23 @@
+{
+  "name": "smartcart",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "setup": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:lts": "concurrently \"npm run dev:lts --prefix backend\" \"npm run dev --prefix frontend\"",
+    "seed": "npm run seed --prefix backend",
+    "make-admin": "npm run make-admin --prefix backend --",
+    "build": "npm run build --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "node": "^22.13.1"
+  },
+  "dependencies": {
+    "mongodb": "^7.1.0"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "smartcart-backend",
+  "version": "1.0.0",
+  "description": "Smartcart backend API",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "dev:lts": "nodemon --exec \"..\\\\node_modules\\\\node\\\\bin\\\\node.exe\" server.js",
+    "start": "node server.js",
+    "start:lts": "..\\\\node_modules\\\\node\\\\bin\\\\node.exe server.js",
+    "seed": "node scripts/seedProducts.js",
+    "make-admin": "node scripts/makeAdmin.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^11.0.1",
+    "mongoose": "^8.18.0",
+    "stripe": "^18.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
